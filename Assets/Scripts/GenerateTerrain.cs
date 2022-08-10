@@ -12,7 +12,7 @@ public class GenerateTerrain : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
     float noiseScale = 0.1f;
-    float heightScale = 2f;
+    float heightScale = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,14 +47,14 @@ public class GenerateTerrain : MonoBehaviour
         {
             for (int z = 0; z < zSize; z++)
             {
-                int v = x + (x * xSize) + z;
+                int v = x + (x * zSize) + z;
 
                 triangles[i] = v;
                 triangles[i+1] = v + 1;
-                triangles[i+2] = v + xSize + 1;
+                triangles[i+2] = v + zSize + 1;
                 triangles[i+3] = v + 1;
-                triangles[i+4] = v + xSize + 2;
-                triangles[i+5] = v + xSize + 1;
+                triangles[i+4] = v + zSize + 2;
+                triangles[i+5] = v + zSize + 1;
                 i += 6;
             }
         }
