@@ -41,10 +41,13 @@ public class PlayerMovement : MonoBehaviour
         direction.x = (Mathf.Abs(joystick.Horizontal) > 0.2) ? joystick.Horizontal : 0;
         direction.z = (Mathf.Abs(joystick.Vertical) > 0.2) ? joystick.Vertical : 0;
 
-        // rotate model
+        // rotate direction relative to camera angle
+        direction = Quaternion.AngleAxis(cameraTransform.eulerAngles.y, Vector3.up) * direction;
+
+        // smoothly rotate model
         if (direction.x != 0 || direction.z != 0)
         {
-            float theta = (Mathf.Atan2(direction.z, -direction.x) - Mathf.Atan2(1, 0)) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            float theta = (Mathf.Atan2(direction.z, -direction.x) - Mathf.Atan2(1, 0)) * Mathf.Rad2Deg;
             theta = Mathf.SmoothDampAngle(transform.eulerAngles.y, theta, ref turnSmoothVelocity, turnTime);
             transform.rotation = Quaternion.Euler(0, theta, 0);
         }
