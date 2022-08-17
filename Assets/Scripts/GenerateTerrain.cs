@@ -11,7 +11,7 @@ public class GenerateTerrain : MonoBehaviour
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
-    float noiseScale = 0.1f;
+    float noiseScale = 0f;
     float heightScale = 3f;
 
     // Start is called before the first frame update
